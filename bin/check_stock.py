@@ -1,10 +1,12 @@
 from selenium import webdriver 
 from selenium.webdriver.chrome.options import Options
 import time
-def check_inventory(producturl, basketurl, webdriver_location):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    browser = webdriver.Chrome(webdriver_location, options=chrome_options)
+def check_inventory(producturl, basketurl):
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    browser = webdriver.Chrome(options=chrome_options)
     browser.get(producturl)
     browser.find_element_by_class_name('js_preventable_buy_action').click()
     time.sleep(5)
